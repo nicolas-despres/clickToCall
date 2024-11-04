@@ -1,0 +1,33 @@
+
+<apex:page docType="html-5.0">
+    <apex:includeLightning />
+    <script src="/support/api/51.0/lightning/opencti.js" type="text/javascript"></script>
+
+    <div id="lightning"></div>
+
+    <script type="text/javascript">
+
+        var listener = function (response) {
+            //console.log("GRC, Appelle Kiamo via une apex page", response)
+            const res = confirm(JSON.stringify(response))
+        }
+
+        $Lightning.use("c:ctiAdapterApp", function () {
+            $Lightning.createComponent("c:ctiAdapterCmp",
+                {
+                },
+                "lightning",
+                function (cmp) {
+                    sforce.opencti.enableClickToDial({
+                        callback: function () {
+
+                            sforce.opencti.onClickToDial({
+                                listener: listener
+                            });
+                        }
+                    });
+                });
+        });
+    </script>
+
+</apex:page>

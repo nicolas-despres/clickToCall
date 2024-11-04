@@ -7,10 +7,10 @@ This repo is a minimalist example used to override the clickToCall behavior
  <items>
             <label>CTI Adapter URL</label>
             <name>reqAdapterUrl</name>
-            <value>{myDomain}/apex/demoAdapterPage</value>
+            <value>{myDomain}/apex/ctiAdapterPage</value>
         </items>
 ```
 2. Add the call center to your user
 3. Add OpenCTI to your app
 
-=> Then you can override the behavior of the onClickCallback in the page `demoAdapterPage.page`
+=> Then you can override the behavior of the onClickCallback in the page `ctiAdapterPage.page`
