@@ -1,0 +1,73 @@
+<aura:component
+    description="panel that is shown on dialing, incoming or transferring calls before being connected that displays basic contact info for the call."
+    controller="ctiApexController" implements="c:ctiPanel">
+    <!-- <aura:registerEvent name="workspace" type="c:WorkspaceEvent"></aura:registerEvent> -->
+
+
+    <aura:attribute name="incomingRingtone" type="String" />
+    <aura:attribute name="outboundRingtone" type="String" />
+
+    <aura:attribute name="state" type="String" />
+    <aura:attribute name="label" type="String" />
+    <aura:attribute name="recordName" type="String" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="account" type="Object" />
+    <aura:attribute name="title" type="String" />
+    <aura:attribute name="phone" type="String" />
+    <aura:attribute name="presence" type="String" description="Could be Available, Busy or Unavailable" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+    <!-- Custom Attributes -->
+    <aura:attribute name="wasSearched" type="Boolean" default="false" />
+    <aura:attribute name="contactName" type="String" />
+    <aura:attribute name="accountName" type="String" />
+    <aura:attribute name="title_2" type="String" />
+    <aura:attribute name="phone_2" type="String" />
+    <aura:attribute name="recordName_2" type="String" />
+    <aura:attribute name="recordId_2" type="String" />
+
+    <aura:attribute name="incomingName" type="String" />
+    <aura:attribute name="isPrimary" type="Boolean" default="true" />
+
+    <!-- coshea extra attributes -->
+    <aura:attribute name="clickToDial" type="Boolean" default="false" />
+
+    <div class="slds-panel">
+        <!--  Top section: Information about the contact, including an avatar -->
+        <div class="slds-panel__section">
+            <div class="avatar slds-align-absolute-center slds-text-align_center">
+                <lightning:icon class="slds-m-around_small" iconName="standard:contact"></lightning:icon>
+            </div>
+
+
+            <div class="name slds-text-heading--large slds-text-color--weak slds-text-align--center">{!v.recordName}
+            </div>
+
+            <div class="slds-text-heading--x-small slds-text-color--weak slds-text-align--center companyDetails">
+                {!v.title}</div>
+            <div class="incoming slds-text-heading--x-small slds-text-color--weak slds-text-align--center">
+                {!v.state}&nbsp;
+                <ui:outputphone value="" />...
+            </div>
+            <div class="slds-text-heading--x-small slds-text-color--weak slds-text-align--center"> <!-- <c:ticker /> -->
+            </div>
+
+
+
+        </div>
+
+        <!--  Bottom section: End button on Dialing; Decline and Accept buttons on Incoming or Transferring -->
+        <div class="bottom-panel slds-panel__section slds-align-bottom slds-grid">
+            <aura:if isTrue="{! v.state == 'Appel en cours'}">
+                <button class="slds-size--1-of-1 slds-button slds-button--destructive"
+                    onclick="{!c.end}">Raccrocher</button>
+                <aura:set attribute="else">
+                    <button class="slds-size--1-of-2 slds-button slds-button--destructive"
+                        onclick="{!c.decline}">Aucune réponse</button>
+                    <button class="slds-size--1-of-2 slds-button slds-button--brand"
+                        onclick="{!c.accept}">Appel accepté</button>
+                </aura:set>
+            </aura:if>
+        </div>
+    </div>
+</aura:component>

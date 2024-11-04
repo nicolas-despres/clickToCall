@@ -1,0 +1,8 @@
+<aura:component description="The container component that houses the UI of the adapter.">
+    <lightning:workspaceAPI aura:id="workspace" />
+    <aura:attribute name="showSpinner" type="Boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:handler name="ctiRenderPanelEvt" action="{!c.renderPanel}" />
+    <aura:registerEvent name="ctiRenderPanelEvt" type="c:ctiRenderPanelEvt" />
+    {!v.body}
+</aura:component>

@@ -1,0 +1,3 @@
+<aura:interface description="CTI Panel Interface, where every implementation is able to fire the events below.," >
+    <aura:registerEvent name="ctiRenderPanelEvt" type="c:ctiRenderPanelEvt"/>
+</aura:interface>
