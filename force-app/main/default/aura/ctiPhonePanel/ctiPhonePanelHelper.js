@@ -15,7 +15,7 @@ WITHOUT LIMITING THE GENERALITY OF THE FOREGOING, THE SOFTWARE IS PROVIDED "AS I
             sforce.opencti.setSoftphonePanelVisibility({
                 visible: true,
                 callback: function () {
-                   
+
                     if (cmp.isValid() && cmp.get('v.presence') != 'Unavailable') {
                         console.log('payload : ' + payload);
                         var attributes = {
@@ -28,7 +28,25 @@ WITHOUT LIMITING THE GENERALITY OF THE FOREGOING, THE SOFTWARE IS PROVIDED "AS I
                             'clickToDial': true,
                             'account': '',
                             'presence': cmp.get('v.presence')
+                        }
+                        sforce.opencti.setSoftphoneItemLabel({
+                            label: 'Appel demandé',
+                            callback: (res) => console.log("Completed")
+                        })
+                        sforce.opencti.setSoftphonePanelLabel({
+                            label: 'Appel demandé',
+                            callback: (res) => console.log("Completed")
+                        })
+                        var callback = function (response) {
+                            if (response.success) {
+                                console.log('API method call executed successfully! returnValue:', response.returnValue);
+                            } else {
+                                console.error('Something went wrong! Errors:', response.errors);
+                            }
                         };
+
+                        sforce.opencti.setSoftphoneItemIcon({ key: "anywhere_alert", callback: callback });
+
                         cmp.getEvent('ctiRenderPanelEvt').setParams({
                             type: 'c:ctiCallInitiatedPanel',
                             attributes: attributes

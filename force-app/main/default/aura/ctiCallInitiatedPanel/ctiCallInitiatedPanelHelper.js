@@ -47,14 +47,6 @@
                     console.log('screen pop worked!');
                 }
             });
-            setTimeout(() => {
-                console.log("reopen screen")
-                sforce.opencti.screenPop({
-                    type: sforce.opencti.SCREENPOP_TYPE.SOBJECT, params: { recordId: recordId }, callback: function () {
-                        console.log('screen pop worked!');
-                    }
-                });
-            }, 3000)
         } 
 
     }
